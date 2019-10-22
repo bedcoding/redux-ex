@@ -9,11 +9,14 @@ class Timer extends Component {
   // 1. 우선 큰 view를 만들고, 그 큰 view 안에 두개의 view를 만듬
   // 2. 버튼이라는 컴포넌트에 아이콘 이름과 함수를 전달하면 거기서 알아서 처리한다.
   render() {
+    console.log("-------------------")
     console.log("presenter.js 확인: ")
     console.log(this.props)
+    console.log("-------------------")
+
 
     // 리덕스 연결후 스토어로부터 받아온 값 넣기
-    const { isPlaying, elapsedTime, timerDuration } = this.props
+    const { isPlaying, elapsedTime, timerDuration, startTimer, restartTimer } = this.props
 
     // 정지중: ▶버튼 / 실행중: ■버튼
     return (
@@ -23,8 +26,8 @@ class Timer extends Component {
         </View>
 
         <View style={styles.lower}>
-          {!isPlaying ? <Button iconName="play-circle" onPress={() => alert("테스트")} /> : null}
-          {isPlaying ? <Button iconName="stop-circle" onPress={() => alert("테스트")} /> : null}
+          {!isPlaying ? <Button iconName="play-circle" onPress={startTimer} /> : null}
+          {isPlaying ? <Button iconName="stop-circle" onPress={restartTimer} /> : null}
         </View>
       </View>
     )

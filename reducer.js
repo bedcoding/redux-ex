@@ -127,7 +127,9 @@ const actionCreators = {
   startTimer,
   restartTimer,
   addSecond,
-}
+};
+
+export { actionCreators };
 
 // 7. Export Reducer
 export default reducer

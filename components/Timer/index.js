@@ -10,6 +10,8 @@
 // 나의 컴포넌트를 스토어에 연결하는 것을 도와줌.
 // 인덱스 컴포넌트: state에서 데이터를 가져오는 것을 관리
 import { connect } from "react-redux"
+import { bindActionCreators } from "redux" // 뭔가 묶어준대
+import { actionCreators as tomatoActions } from "../../reducer"
 import Timer from "./presenter" // 이제 타이머를 불러올거다.
 
 // 컴포넌트는 props를 리덕스 스토어에서 얻었다.
@@ -28,4 +30,18 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(Timer)
+// 디스패치는 액션을 리듀서로 보내는 function이다.
+// 그리고 디스패치와 액션을 묶을 것이다.
+function mapDispatchToProps(dispatch) {
+  return {
+    // startTimer : reducer.js에서 가져옴
+    startTimer: bindActionCreators(tomatoActions.startTimer, dispatch),
+    restartTimer: bindActionCreators(tomatoActions.restartTimer, dispatch),
+  }
+}
+
+// 타이머를 state와 디스패치랑 연결
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Timer)

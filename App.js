@@ -10,7 +10,10 @@ import { Provider } from "react-redux" // 우리는 리듀서 그리고 앱의 s
 
 // 스토어 생성
 let store = createStore(reducer)
+console.log("-------------------")
+console.log("store 확인: ")
 console.log(store)
+console.log("-------------------")
 
 /*
 // 이때 로그 찍어보면 이렇게 출력된다.
